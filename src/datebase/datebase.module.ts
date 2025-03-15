@@ -8,7 +8,7 @@ imports : [
         imports : [ConfigModule],
         inject: [ConfigService],
         useFactory : (ConfigService : ConfigService) => ({
-            tyoe : 'postgres',
+            type : 'postgres',
             host: ConfigService.get<string>('POSTGRES_HOST'),
             port: ConfigService.get<number>('POSTGRES_PORT'),
             usename: ConfigService.get<string>('POSTGRES_USERNAME'),
