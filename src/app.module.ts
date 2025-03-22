@@ -5,6 +5,8 @@ import { ConfigModule } from '@nestjs/config';
 import { DatabaseModule } from './datebase/datebase.module';
 import { ProductModule } from './product/product.module';
 import { CommentModule } from './comment/comment.module';
+import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
 import * as Joi from '@hapi/joi';
 
 @Module({
@@ -16,7 +18,7 @@ import * as Joi from '@hapi/joi';
       POSTGRES_DB : Joi.string().required(), 
       POSTGRES_PORT: Joi.number().required(),
     })
-  }), DatabaseModule, ProductModule, CommentModule],
+  }), DatabaseModule, ProductModule, CommentModule, UserModule, AuthModule],
   controllers: [AppController],
   providers: [AppService],
 })

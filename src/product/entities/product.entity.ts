@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Comment } from '../../comment/entities/comment.entity';
 
 @Entity()
 export class Product {
@@ -16,5 +17,12 @@ export class Product {
 
  @Column() 
  public imageUrl : string;
+
+ 
+ @OneToMany(() => Comment, (comment) => comment.product, {
+    eager: true,
+    cascade: true,
+  })
+  public comments: Comment[];
 
 }
