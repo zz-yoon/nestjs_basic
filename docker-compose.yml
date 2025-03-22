@@ -1,23 +1,24 @@
 services:
   elice_backend:
-  build:
-  dockerfile : Dockerfile
-  container_name: elice_backend
-  command: npm run start:dev
-  depends_on: 
-  - elicelab_database
+    container_name: elice_backend
+    build:
+      dockerfile: Dockerfile
+    command: npm run start:dev
+    depends_on: 
+      - elicelab_database
+    env_file:
+      - .env
+
   elicelab_database:
     container_name: elicelab.database
     image: postgres:latest
     ports:
       - '5432:5432'
     volumes: 
-      -  ./usr/src/app 
-      - /usr/src/app/node_modules
+      - ./postgres-data:/var/lib/postgresql/data
     env_file:
       - .env
-
-# networks:
-#   elicelab-network:
-#     driver: bridge
- 
+    networks:
+      default:
+        aliases:
+          - elicelab_db
